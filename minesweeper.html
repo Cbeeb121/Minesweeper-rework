@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html>
 <head>
 	<title>Minesweeper</title>
 	<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
@@ -6,7 +8,23 @@
 </head>
 
 <body>
+    <div class="pure-g">
+		<div class="header">
+			<h1 id="title">Minesweeper</h1>
+		</div>
+            <!-- I think the board game will go here -->
+    		<h2>Instructions:</h2>
+    		<ul>
+    			<li>Left-Click a cell to reveal it.</li>
+    			<li>If the clicked cell contains a mine, you lose </li>
+    			<li>If the clicked cell does not contain a mine, it will reveal the number of mines adjadent to it</li>
+    			<li>Right-Click a cell to flag a cell as a mine</li>
+    			<li>If all non-mines are clicked, you win!</li>
+    		</ul>
+    </div>
+
     <script type="text/javascript" src="Tile.js"></script>
     <script type="text/javascript" src="Board.js"></script>
     <script type="text/javascript" src="Gameplay.js"></script>
 </body>
+</html>
