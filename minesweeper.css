@@ -1,1 +1,41 @@
+.topbar {
+    background: #c3c3c3;
+    padding: 10px;
+}
+.header {
+    text-align: center;
+}
+#title {
+    font-size: 1.7em;
+    margin: 0;
+    padding: 0;
+}
+.sidebar ul {
+    list-style-type: none;
+}
+.nav-list {
+    padding: 0;
+    text-align: center;
+}
+.nav-item {
+    display: inline;
+    width: 10em;
+}
+.nav-item input {
+    width: 50px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.button-style {
+    color: #FFF;
+    background-color: #08F;
+}
 
+#grid {
+    text-align: center;
+    white-space: nowrap;
+}
+#instructions h2 {
+    margin-left: 40px;
+}
