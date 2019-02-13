@@ -7,4 +7,4 @@
 - Second Meeting:
 1. Location: LEEP2 Study Room
 2. Members Attending: Giang, Jordan, Hirsh, Ryan, John
-Outcomes: Work day, finished the HTML/CSS, worked on the Gameplay functionality and finalized classes for Tiles and Boards
+3. Outcomes: Work day, finished the HTML/CSS, worked on the Gameplay functionality and finalized classes for Tiles and Boards
