@@ -1,3 +1,9 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
 .topbar {
     background: #c3c3c3;
     padding: 10px;
@@ -31,11 +37,31 @@
     color: #FFF;
     background-color: #08F;
 }
-
 #grid {
     text-align: center;
     white-space: nowrap;
 }
 #instructions h2 {
     margin-left: 40px;
+}
+.cell {
+    width: 1.5em;
+    height: 1.5em;
+    border: 1px solid black;
+    margin: 0;
+    padding: 0;
+    font-size: 1.2em;
+    text-align: center;
+    vertical-align: bottom;
+    background: #EEE;
+}
+.cell:hover {
+    background: #CCC;
+    border-color: #333;
+}
+.cell:active {
+    background: #AAA;
+}
+.cell:focus {
+    outline: none;
 }
