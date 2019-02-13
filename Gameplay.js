@@ -28,10 +28,18 @@ var gamepalay = {
         }
         else
         {
-            myBoard.reveal(row,col)
+            myBoard.reveal(row,col);
+            myBoard.checkWin();
         }
     }
-    
+    checkWin: function()
+    {
+        if(myBoard.numRevealed==(rows*cols-mines))
+        {
+            alert("You Win!!!!!!!!!");
+            gameplay.start();
+        }
+    }
 }
 
 window.onload = function () 
