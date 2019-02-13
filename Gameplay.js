@@ -1,27 +1,40 @@
-function win(rows, cols, arr)
-{
-    let count = 0;
-    for(let i = 0; i < cols; i++)
+var gamepalay = {
+    start: function()
     {
-        for(let j = 0; j < rows; j++)
+        var rows = $('rows').value,
+            cols = $('cols').value,
+            mines = $('mines').value
+
+        let myBoard = new Board(rows,cols,mines);
+        //onclick stuff
+
+    }
+
+
+    rightClick: function(row, col)
+    {
+        myBoard.flag(row,col);
+    }
+
+    leftClick: function(row,col)
+    {
+        if(myBoard.isMine(row,col))
         {
-            if(!arr[i][j].isUnCovered())
-            {
-                count++;
-            }
+            gameplay.lose();
+        }
+        else if(myBoard.getNumber(row,col)==0)
+        {
+            //recursive stuff
+        }
+        else
+        {
+            myBoard.reveal(row,col)
         }
     }
-    if(count==numOfBombs)
-    {
-        return true;
-    }
-    return false;
+    
 }
-function lose()
+
+window.onload = function () 
 {
-    Window.alert("You Lost");
-}
-function rightClick(row,col,arr)
-{
-    arr[row][col].flag();
+    gameplay.start();
 }
