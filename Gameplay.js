@@ -17,3 +17,11 @@ function win(rows, cols, arr)
     }
     return false;
 }
+function lose()
+{
+    Window.alert("You Lost");
+}
+function rightClick(row,col,arr)
+{
+    arr[row][col].flag();
+}
