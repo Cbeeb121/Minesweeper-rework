@@ -8,13 +8,13 @@ var gamepalay = {
         let myBoard = new Board(rows,cols,mines);
         //onclick stuff
 
-    }
+    },
 
 
     rightClick: function(row, col)
     {
         myBoard.flag(row,col);
-    }
+    },
 
     leftClick: function(row,col)
     {
@@ -31,7 +31,8 @@ var gamepalay = {
             myBoard.reveal(row,col);
             myBoard.checkWin();
         }
-    }
+    },
+    
     checkWin: function()
     {
         if(myBoard.numRevealed==(rows*cols-mines))
