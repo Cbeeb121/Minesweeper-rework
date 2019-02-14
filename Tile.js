@@ -1,4 +1,4 @@
-class Tile
+class Tile extends gameplay
 {
   //constructor
   constructor(newNumber, newFlag, newMine)

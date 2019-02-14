@@ -1,4 +1,4 @@
-class Board {
+class Board extends gameplay{
     constructor(rows, cols, num_mines) {
         this.rows = rows;
         this.cols = cols;
@@ -11,18 +11,18 @@ class Board {
         this.setMines();
         this.generateBoard();
         this.generateNumbers();
-    }
+    },
 
-    setMines() {
+    setMines: function() {
         for (let i = 0; i < this.num_mines; i++) {
             let index = Math.floor(Math.random() * size);
             if (!this.mines.includes(index)) {
                 this.mines.push(index);
             }
         }
-    }
+    },
 
-    generateBoard() {
+    generateBoard: function() {
         for (let i = 0; i < this.rows; i++) {
             row = [];
             for (let j = 0; j < this.cols; j++) {
@@ -32,17 +32,17 @@ class Board {
             }
             this.tiles.push(row);
         }
-    }
+    },
 
-    generateNumbers() {
+    generateNumbers: function() {
         for (let i = 0; i < this.rows; i++) {
             for (let j = 0; j < this.cols; j++) {
                 this.calculateNumber(i, j);
             }
         }
-    }
+    },
 
-    calculateNumber(x, y) {
+    calculateNumber: function(x, y) {
         if (this.tiles[x][y].isMine()) {
             this.tiles[x][y].setNumber(-1);
             return;
@@ -51,7 +51,7 @@ class Board {
             // Board Layout:
             //  | 0 | 1 | 2 |
             //  | 7 | t | 3 |
-            //  | 6 | 5 | 4 | 
+            //  | 6 | 5 | 4 |
             if (x - 1 >= 0 && y - 1 >= 0) {
                 // Cell 0
                 if (this.tiles[x - 1][y - 1].isMine()) {
@@ -92,9 +92,9 @@ class Board {
                     count++;
                 }
             }
-            
+
             this.tiles[x][y].setNumber(count);
         }
-    }
+    },
 
-}
+};
