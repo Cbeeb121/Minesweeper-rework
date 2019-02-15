@@ -7,6 +7,8 @@ class Board {
         this.mines = [];
         this.tiles = [];
         this.num_revealed = 0;
+        this.flags = [];
+        this.num_flagged = 0;
 
         this.setMines();
         this.generateBoard();
@@ -28,7 +30,7 @@ class Board {
             for (let j = 0; j < this.cols; j++) {
                 let index = i * this.cols + j;
                 let isMine = this.mines.includes(index);
-                row.push(new Tile(isMine));
+                row.push(new Tile(0, false, isMine));
             }
             this.tiles.push(row);
         }
@@ -43,7 +45,7 @@ class Board {
     }
 
     calculateNumber(x, y) {
-        if (this.tiles[x][y].isMine()) {
+        if (this.tiles[x][y].getMine()) {
             this.tiles[x][y].setNumber(-1);
             return;
         } else {
@@ -54,41 +56,41 @@ class Board {
             //  | 6 | 5 | 4 |
             if (x - 1 >= 0 && y - 1 >= 0) {
                 // Cell 0
-                if (this.tiles[x - 1][y - 1].isMine()) {
+                if (this.tiles[x - 1][y - 1].getMine()) {
                     count++;
                 }
                 // Cell 1
-                if (this.tiles[x][y - 1].isMine()) {
+                if (this.tiles[x][y - 1].getMine()) {
                     count++;
                 }
             }
             if (x + 1 < this.cols && y - 1 >= 0) {
                 // Cell 2
-                if (this.tiles[x + 1][y - 1].isMine()) {
+                if (this.tiles[x + 1][y - 1].getMine()) {
                     count++;
                 }
                 // Cell 3
-                if (this.tiles[x + 1][y].isMine()) {
+                if (this.tiles[x + 1][y].getMine()) {
                     count++;
                 }
             }
             if (x + 1 < this.cols && y + 1 < this.rows) {
                 // Cell 4
-                if (this.tiles[x + 1][y + 1].isMine()) {
+                if (this.tiles[x + 1][y + 1].getMine()) {
                     count++;
                 }
                 // Cell 5
-                if (this.tiles[x][y + 1].isMine()) {
+                if (this.tiles[x][y + 1].getMine()) {
                     count++;
                 }
             }
             if (x - 1 >= 0 && y + 1 < this.rows) {
                 // Cell 6
-                if (this.tiles[x - 1][y + 1].isMine()) {
+                if (this.tiles[x - 1][y + 1].getMine()) {
                     count++;
                 }
                 // Cell 7
-                if (this.tiles[x - 1][y].isMine()) {
+                if (this.tiles[x - 1][y].getMine()) {
                     count++;
                 }
             }
@@ -97,4 +99,21 @@ class Board {
         }
     }
 
+    reveal(x, y) {
+        this.tiles[x][y].setRevealed(true);
+
+        this.num_revealed++;
+    }
+
+    flag(x, y) {
+        this.tiles[x][y].setFlag(true);
+
+        this.flags.push(y * cols + x);
+
+        this.num_flagged++;
+    }
+
+    getNumber(x, y) {
+        return this.tiles[x][y].getNumber();
+    }
 };
