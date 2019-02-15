@@ -78,7 +78,7 @@ var gameplay = {
         else
         {
             myBoard.reveal(row,col);
-            myBoard.checkWin();
+            gameplay.checkWin();
         }
     },
 
