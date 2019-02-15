@@ -1,5 +1,4 @@
-class Tile extends gameplay
-{
+class Tile {
   //constructor
   constructor(newNumber, newFlag, newMine)
   {
@@ -8,6 +7,7 @@ class Tile extends gameplay
     this.mine = newMine;
     this.revealed = false;
   }
+
   //getNum
   get number()
   {
@@ -15,19 +15,19 @@ class Tile extends gameplay
   }
 
   //isFlag
-  const function isFlag()
+  isFlag()
   {
     return this.flag;
   }
 
   //isBomb
-  const function isMine()
+  isMine()
   {
     return this.mine;
   }
 
   //isUncovered
-  const function isRevealed()
+  isRevealed()
   {
     return this.revealed;
   }
