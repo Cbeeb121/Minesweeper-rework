@@ -7,6 +7,7 @@ var gameplay = {
     rows:0,
     cols:0,
     mines:0,
+    numRevealed:0,
     myBoard: new Board(1,1,1),
 
     start: function()
@@ -20,28 +21,27 @@ var gameplay = {
         // not sure if needed
         for(let i=0;i<this.rows;i++) gameplay.mark[i]=[];
 
-        gameplay.add_grid_to_DOM();
+        gameplay.add_grid();
         //onclick stuff
 
     },
 
-
-    add_grid_to_DOM: function () {
+    add_grid: function () {
         $('grid').innerHTML = '';
         for (var i = 0; i < this.rows; i++) {
             $('grid').innerHTML += '<br>';
             for (var j = 0; j < this.cols; j++) {
-                gameplay.add_cell_to_DOM(i, j);
+                gameplay.add_cell(i, j);
             }
         }
     },
 
-    add_cell_to_DOM: function (row, col) {
+    add_cell: function (row, col) {
         var cell = this.myBoard.getNumber(row,col),
             id = 'id="cell-'+ row +'-'+ col +'"',
             classname = 'class="cell" ',
-            onclick = 'onclick="gameplay.click_cell('+ row +','+ col +')" ',
-            oncontext = 'oncontextmenu="gameplay.flag_cell('+ row +','+ col +'); return false"',
+            onclick = 'onclick="gameplay.leftClick('+ row +','+ col +')" ',
+            oncontext = 'oncontextmenu="gameplay.rightClick('+ row +','+ col +'); return false"',
             button = ('<button '+ id + classname + onclick
                       + oncontext + '>&nbsp;</button>');
 
@@ -50,7 +50,15 @@ var gameplay = {
 
     rightClick: function(row, col)
     {
-        this.myBoard.flag(row,col);
+        var id = 'cell-' + row + '-' + col;
+        if ($(id).innerHTML === '&nbsp;') {
+            $(id).innerHTML = '&#9873';
+            $(id).style.color = '#ff0000';
+        } else {
+            if ($(id).innerHTML = '&#9873') {
+                $(id).innerHTML = '&nbsp;';
+            }
+        }
     },
 
     isInside: function(row, col)
@@ -91,6 +99,7 @@ var gameplay = {
         else
         {
             this.myBoard.reveal(row,col);
+            numRevealed++;
             gameplay.checkWin();
         }
     },
