@@ -8,26 +8,50 @@ class Tile {
     this.revealed = false;
   }
 
-  //getNum
+  //  set number
+  set number(num)
+  {
+    this.number = num;
+  }
+
+  //get number
   get number()
   {
     return this.number;
   }
 
-  //isFlag
-  isFlag()
+  //set flag
+  set flag(flagStatus)
+  {
+    this.flag = flagStatus;
+  }
+
+  //get flag
+  get flag()
   {
     return this.flag;
   }
 
-  //isBomb
-  isMine()
+  //setMine
+  set mine(mineStatus)
+  {
+    this.mine = mineStatus;
+  }
+
+  //get mine
+  get mine()
   {
     return this.mine;
   }
 
-  //isUncovered
-  isRevealed()
+  //set revealed
+  set revealed(revealedStatus)
+  {
+    this.revealed = revealedStatus;
+  }
+
+  //get revealed
+  get revealed()
   {
     return this.revealed;
   }
