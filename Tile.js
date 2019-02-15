@@ -1,4 +1,5 @@
 class Tile {
+
   //constructor
   constructor(newNumber, newFlag, newMine)
   {
@@ -9,49 +10,49 @@ class Tile {
   }
 
   //  set number
-  set number(num)
+  setNumber(num)
   {
     this.number = num;
   }
 
   //get number
-  get number()
+  get getNumber()
   {
     return this.number;
   }
 
   //set flag
-  set flag(flagStatus)
+  setFlag(flagStatus)
   {
     this.flag = flagStatus;
   }
 
   //get flag
-  get flag()
+  get getFlag()
   {
     return this.flag;
   }
 
   //setMine
-  set mine(mineStatus)
+  setMine(mineStatus)
   {
     this.mine = mineStatus;
   }
 
   //get mine
-  get mine()
+  get getMine()
   {
     return this.mine;
   }
 
   //set revealed
-  set revealed(revealedStatus)
+  setRevealed(revealedStatus)
   {
     this.revealed = revealedStatus;
   }
 
   //get revealed
-  get revealed()
+  get getRevealed()
   {
     return this.revealed;
   }

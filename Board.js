@@ -45,7 +45,7 @@ class Board {
     }
 
     calculateNumber(x, y) {
-        if (this.tiles[x][y].getMine()) {
+        if (this.tiles[x][y].getMine) {
             this.tiles[x][y].setNumber(-1);
             return;
         } else {
@@ -56,41 +56,41 @@ class Board {
             //  | 6 | 5 | 4 |
             if (x - 1 >= 0 && y - 1 >= 0) {
                 // Cell 0
-                if (this.tiles[x - 1][y - 1].getMine()) {
+                if (this.tiles[x - 1][y - 1].getMine) {
                     count++;
                 }
                 // Cell 1
-                if (this.tiles[x][y - 1].getMine()) {
+                if (this.tiles[x][y - 1].getMine) {
                     count++;
                 }
             }
             if (x + 1 < this.cols && y - 1 >= 0) {
                 // Cell 2
-                if (this.tiles[x + 1][y - 1].getMine()) {
+                if (this.tiles[x + 1][y - 1].getMine) {
                     count++;
                 }
                 // Cell 3
-                if (this.tiles[x + 1][y].getMine()) {
+                if (this.tiles[x + 1][y].getMine) {
                     count++;
                 }
             }
             if (x + 1 < this.cols && y + 1 < this.rows) {
                 // Cell 4
-                if (this.tiles[x + 1][y + 1].getMine()) {
+                if (this.tiles[x + 1][y + 1].getMine) {
                     count++;
                 }
                 // Cell 5
-                if (this.tiles[x][y + 1].getMine()) {
+                if (this.tiles[x][y + 1].getMine) {
                     count++;
                 }
             }
             if (x - 1 >= 0 && y + 1 < this.rows) {
                 // Cell 6
-                if (this.tiles[x - 1][y + 1].getMine()) {
+                if (this.tiles[x - 1][y + 1].getMine) {
                     count++;
                 }
                 // Cell 7
-                if (this.tiles[x - 1][y].getMine()) {
+                if (this.tiles[x - 1][y].getMine) {
                     count++;
                 }
             }
@@ -114,6 +114,6 @@ class Board {
     }
 
     getNumber(x, y) {
-        return this.tiles[x][y].getNumber();
+        return this.tiles[x][y].getNumber;
     }
 };
