@@ -83,8 +83,7 @@ var gameplay = {
     },
 
     reset: function () {
-        game.revealed = 0;
-        game.start();
+        gameplay.start();
     },
 
     checkWin: function()
