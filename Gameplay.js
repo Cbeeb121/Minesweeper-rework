@@ -7,7 +7,6 @@ var gameplay = {
     rows:0,
     cols:0,
     mines:0,
-    numRevealed:0,
     myBoard: new Board(1,1,1),
 
     start: function()
@@ -86,7 +85,7 @@ var gameplay = {
     {
         if(this.myBoard.isMine(row,col))
         {
-            gameplay.lose(row,col);
+            gameplay.checkLose(row,col);
         }
         else if(this.myBoard.getNumber(row,col)==0)
         {
@@ -99,13 +98,23 @@ var gameplay = {
         else
         {
             this.myBoard.reveal(row,col);
-            numRevealed++;
             gameplay.checkWin();
         }
     },
 
     reset: function () {
         gameplay.start();
+    },
+
+    checkLose: function () {
+        for (var i = 0; i < gameplay.rows; i++) {
+            for (var j = 0; j < gamepaly.cols; j++) {
+                var id = 'cell-' + i + '-' + j;
+                if (this.myBoard[i][j] === -1) {
+                    $(id).innerHTML = '&#9728';
+                }
+            }
+        }
     },
 
     checkWin: function()
