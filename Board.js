@@ -59,10 +59,25 @@ class Board {
         return(row>=0 && col>=0 && row<this.rows && col<this.cols);
     }
 
+
     reveal(x, y) {
         if (this.tiles[x][y].getRevealed || this.tiles[x][y].getFlag) return false;
 
         var id = 'cell-' + x + '-' + y;
+
+        //some colorful styling!!
+        switch (this.tiles[x][y].getNumber) {
+            case 1:
+                $(id).style.color = 'blue'; break;
+            case 2:
+                $(id).style.color = 'green'; break;
+            case 3:
+                $(id).style.color = 'red'; break;
+            case 4:
+                $(id).style.color = 'purple'; break;
+            default:
+                $(id).style.color = 'black'; break;
+        }
         $(id).style.background = '#EEE';
         if (this.tiles[x][y].getNumber!=0)
             $(id).innerHTML = this.tiles[x][y].getNumber;
@@ -87,7 +102,7 @@ class Board {
               this.num_flagged++;
               return true;
           }
-          else alert("None flag is available")
+          else alert("No more flags available")
         }
         return false;
     }
