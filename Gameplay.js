@@ -3,11 +3,12 @@ var $ = function (id) { return document.getElementById(id);};
 
 var gameplay = {
 
-    mark: [],
     rows:0,
     cols:0,
     mines:0,
     myBoard: new Board(1,1,1),
+    dx: [-1,-1,0,1,1,1,0,-1],
+    dy: [0,1,1,1,0,-1,-1,-1],
 
     start: function()
     {
@@ -15,10 +16,12 @@ var gameplay = {
         this.cols = $('cols').value;
         this.mines = $('mines').value;
 
-        gameplay.myBoard = new Board(this.rows,this.cols,this.mines);
+        this.myBoard = new Board(this.rows,this.cols,this.mines);
 
-        // not sure if needed
-        for(let i=0;i<this.rows;i++) gameplay.mark[i]=[];
+        /*console.log(this.rows+" "+this.cols+" "+this.mines);
+        for (let i=0;i<this.rows;i++)
+        for (let j=0;j<this.cols;j++)
+        if (this.myBoard.getNumber(i,j)==-1) console.log(i+" "+j);*/
 
         gameplay.add_grid();
         //onclick stuff
@@ -27,9 +30,9 @@ var gameplay = {
 
     add_grid: function () {
         $('grid').innerHTML = '';
-        for (var i = 0; i < this.rows; i++) {
+        for (let i = 0; i < this.rows; i++) {
             $('grid').innerHTML += '<br>';
-            for (var j = 0; j < this.cols; j++) {
+            for (let j = 0; j < this.cols; j++) {
                 gameplay.add_cell(i, j);
             }
         }
@@ -49,56 +52,53 @@ var gameplay = {
 
     rightClick: function(row, col)
     {
+        if (this.myBoard.isRevealed(row,col)) return;
         var id = 'cell-' + row + '-' + col;
-        if ($(id).innerHTML === '&nbsp;') {
+        if (this.myBoard.flag(row,col)) {
             $(id).innerHTML = '&#9873';
             $(id).style.color = '#ff0000';
-        } else {
-            if ($(id).innerHTML = '&#9873') {
-                $(id).innerHTML = '&nbsp;';
-            }
+            gameplay.checkWin();
+        }
+        else {
+            $(id).innerHTML = '&nbsp;';
+            $(id).style.color = '#000000';
         }
     },
 
     isInside: function(row, col)
     {
-        return(row>=0 && col>=0 && row<rows && col<cols);
+        return(row>=0 && col>=0 && row<this.rows && col<this.cols);
     },
 
     revealHelper: function(row, col)
     {
-        var dx = [-1,-1,0,1,1,1,0,-1];
-        var dy = [0,1,1,1,0,-1,-1,-1];
-
-        gameplay.mark[row,col]=false;
-        for(let i=1;i<=8;i++) {
-            let u = row+dx[i];
-            let v = col+dy[i];
-            if (isInside(u,v) && gameplay.mark[u][v]) {
-                this.myBoard.reveal(u,v);
-                if (this.myBoard.getNumber(u,v)==0) revealHelper(u,v);
+        if (this.myBoard.getNumber(row,col)!=0) return;
+        for(let i=0;i<8;i++) {
+            let u = row+this.dx[i];
+            let v = col+this.dy[i];
+            if (gameplay.isInside(u,v)) {
+                if (this.myBoard.reveal(u,v)) gameplay.revealHelper(u,v);
             }
         }
     },
 
     leftClick: function(row,col)
     {
-        if(this.myBoard.isMine(row,col))
+        if (this.myBoard.isFlagged(row,col) || this.myBoard.isRevealed(row,col)) return;
+        if (this.myBoard.getNumber(row,col)==-1)
         {
-            gameplay.checkLose(row,col);
+            this.checkLose(row,col);
         }
-        else if(this.myBoard.getNumber(row,col)==0)
+        else if (this.myBoard.getNumber(row,col)==0)
         {
-            // initiate mark array
-            for(let i=0;i<rows;i++)
-            for(let j=0;j<cols;j++) gameplay.mark[i][j]=true;
             //recursive stuff
-            revealHelper(row,col);
+            gameplay.revealHelper(row,col);
+            this.checkWin();
         }
         else
         {
             this.myBoard.reveal(row,col);
-            gameplay.checkWin();
+            this.checkWin();
         }
     },
 
@@ -107,10 +107,10 @@ var gameplay = {
     },
 
     checkLose: function () {
-        for (var i = 0; i < gameplay.rows; i++) {
-            for (var j = 0; j < gamepaly.cols; j++) {
-                var id = 'cell-' + i + '-' + j;
-                if (this.myBoard[i][j] === -1) {
+        for (let i = 0; i < this.rows; i++) {
+            for (let j = 0; j < this.cols; j++) {
+                if (this.myBoard.getNumber(i,j) == -1) {
+                    var id = 'cell-' + i + '-' + j;
                     $(id).innerHTML = '&#9728';
                 }
             }
@@ -119,10 +119,10 @@ var gameplay = {
 
     checkWin: function()
     {
-        if(this.myBoard.numRevealed==(this.rows*this.cols-this.mines))
+        if(this.myBoard.getRevealed()==(this.rows*this.cols-this.mines))
         {
             alert("You Win!!!!!!!!!");
-            gameplay.start();
+            //gameplay.start();
         }
     }
 }
