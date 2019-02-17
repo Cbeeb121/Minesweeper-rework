@@ -22,6 +22,14 @@ var gameplay = {
             alert("Too many mines!!! The maximum number of mines for this board is "+(this.rows*this.cols-1));
             return;
         }
+        if (this.rows <2) {
+            alert("The board must have atleast 2 rows.");
+            return;
+        }
+        if (this.cols <2) {
+            alert("The board must have atleast 2 columns.");
+            return;
+        }
 
         this.myBoard = new Board(this.rows,this.cols,this.mines);
 
