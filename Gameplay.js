@@ -38,6 +38,10 @@ var gameplay = {
             alert("The board must have at least 2 columns.");
             return;
         }
+        if (this.mines < 1) {
+            alert("You need at least one mine!")
+            return;
+        }
 
         this.myBoard = new Board(this.rows,this.cols,this.mines);
 
