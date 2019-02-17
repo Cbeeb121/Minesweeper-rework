@@ -9,9 +9,11 @@ var gameplay = {
     myBoard: new Board(1,1,1),
     dx: [-1,-1,0,1,1,1,0,-1],
     dy: [0,1,1,1,0,-1,-1,-1],
+    ended:0,
 
     start: function()
     {
+        this.ended = 0;
         this.rows = $('rows').value;
         this.cols = $('cols').value;
         this.mines = $('mines').value;
@@ -52,6 +54,11 @@ var gameplay = {
 
     rightClick: function(row, col)
     {
+        if (this.ended) {
+            this.ended++;
+            if (this.ended>3) alert("C'mon, the game ended./nThere's nothing you can do.");
+            return;
+        }
         if (this.myBoard.isRevealed(row,col)) return;
         var id = 'cell-' + row + '-' + col;
         if (this.myBoard.flag(row,col)) {
@@ -72,18 +79,22 @@ var gameplay = {
 
     revealHelper: function(row, col)
     {
+        if (!this.myBoard.reveal(row,col)) return;
         if (this.myBoard.getNumber(row,col)!=0) return;
         for(let i=0;i<8;i++) {
             let u = row+this.dx[i];
             let v = col+this.dy[i];
-            if (gameplay.isInside(u,v)) {
-                if (this.myBoard.reveal(u,v)) gameplay.revealHelper(u,v);
-            }
+            if (gameplay.isInside(u,v)) gameplay.revealHelper(u,v);
         }
     },
 
     leftClick: function(row,col)
     {
+        if (this.ended) {
+            this.ended++;
+            if (this.ended>3) alert("C'mon, the game ended. There's nothing you can do.");
+            return;
+        }
         if (this.myBoard.isFlagged(row,col) || this.myBoard.isRevealed(row,col)) return;
         if (this.myBoard.getNumber(row,col)==-1)
         {
@@ -107,12 +118,14 @@ var gameplay = {
     },
 
     checkLose: function () {
+        this.ended = 1;
         for (let i = 0; i < this.rows; i++) {
             for (let j = 0; j < this.cols; j++) {
-                if (this.myBoard.getNumber(i,j) == -1) {
-                    var id = 'cell-' + i + '-' + j;
+                var id = 'cell-' + i + '-' + j;
+                if (this.myBoard.getNumber(i,j) == -1)
                     $(id).innerHTML = '&#9728';
-                }
+                else
+                    $(id).innerHTML = '&#9760';
             }
         }
     },
@@ -121,8 +134,12 @@ var gameplay = {
     {
         if(this.myBoard.getRevealed()==(this.rows*this.cols-this.mines))
         {
-            alert("You Win!!!!!!!!!");
-            //gameplay.start();
+            this.ended = 1;
+            for (let i = 0; i < this.rows; i++)
+            for (let j = 0; j < this.cols; j++) {
+                var id = 'cell-' + i + '-' + j;
+                $(id).innerHTML = '&#x2b50';
+            }
         }
     }
 }

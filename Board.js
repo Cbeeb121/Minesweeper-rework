@@ -27,7 +27,6 @@ class Board {
                 var col = Math.floor(Math.random() * this.cols);
             }
             while (this.tiles[row][col].isMine());
-//            console.log(i+" "+row+" "+col);
             this.tiles[row][col].setMine();
         }
     }
@@ -61,12 +60,12 @@ class Board {
     }
 
     reveal(x, y) {
-        if (this.tiles[x][y].getRevealed) return false;
+        if (this.tiles[x][y].getRevealed || this.tiles[x][y].getFlag) return false;
 
         var id = 'cell-' + x + '-' + y;
+        $(id).style.background = '#EEE';
         if (this.tiles[x][y].getNumber!=0)
             $(id).innerHTML = this.tiles[x][y].getNumber;
-        $(id).style.background = '#EEE';
 
         this.tiles[x][y].setRevealed(true);
         this.num_revealed++;
