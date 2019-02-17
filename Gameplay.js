@@ -18,6 +18,11 @@ var gameplay = {
         this.cols = $('cols').value;
         this.mines = $('mines').value;
 
+        if (this.mines>=this.rows*this.cols) {
+            alert("Too many mines!!! The maximum number of mines for this board is "+(this.rows*this.cols-1));
+            return;
+        }
+
         this.myBoard = new Board(this.rows,this.cols,this.mines);
 
         /*console.log(this.rows+" "+this.cols+" "+this.mines);
