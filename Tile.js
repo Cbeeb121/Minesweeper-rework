@@ -1,58 +1,57 @@
 class Tile {
-  //constructor
-  constructor(newNumber, newFlag, newMine)
-  {
-    this.number = newNumber;
-    this.flag = newFlag;
-    this.mine = newMine;
-    this.revealed = false;
-  }
+    //constructor
+    constructor(newNumber, newFlag)
+    {
+        this.number = newNumber;
+        this.flag = newFlag;
+        this.revealed = false;
+    }
 
-  //  set number
-  set number(num)
-  {
-    this.number = num;
-  }
+    //  set number
+    setNumber(num)
+    {
+        this.number = num;
+    }
 
-  //get number
-  get number()
-  {
-    return this.number;
-  }
+    //get number
+    get getNumber()
+    {
+        return this.number;
+    }
 
-  //set flag
-  set flag(flagStatus)
-  {
-    this.flag = flagStatus;
-  }
+    //set flag
+    setFlag(flagStatus)
+    {
+        this.flag = flagStatus;
+    }
 
-  //get flag
-  get flag()
-  {
-    return this.flag;
-  }
+    //get flag
+    get getFlag()
+    {
+        return this.flag;
+    }
 
-  //setMine
-  set mine(mineStatus)
-  {
-    this.mine = mineStatus;
-  }
+    //set mine
+    setMine()
+    {
+        this.number = -1;
+    }
 
-  //get mine
-  get mine()
-  {
-    return this.mine;
-  }
+    //check mine
+    isMine()
+    {
+        return (this.number==-1);
+    }
 
-  //set revealed
-  set revealed(revealedStatus)
-  {
-    this.revealed = revealedStatus;
-  }
+    //set revealed
+    setRevealed(revealedStatus)
+    {
+        this.revealed = revealedStatus;
+    }
 
-  //get revealed
-  get revealed()
-  {
-    return this.revealed;
-  }
+    //get revealed
+    get getRevealed()
+    {
+        return this.revealed;
+    }
 }

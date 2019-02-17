@@ -17,7 +17,7 @@
     			<ul class="nav-list">
     				<li class="nav-item">
     					<label for="rows">Rows:</label>
-    					<input type="number" name="rows" id="rows" min="0" max="100" value="10">
+    					<input type="number" name="rows" id="rows" min="2" max="100" value="10">
     				</li>
     				<li class="nav-item">
     					<label for="cols">Columns:</label>
@@ -28,10 +28,6 @@
     					<input type="number" name="mines" id="mines" min="1" value="10">
     				</li>
                     <br>
-                    <li class="nav-item">
-    					<span id="remaining"></span>
-    					<label for="remaining"> remaining</label>
-    				</li>
     				<li class="nav-item">
     					<button id="reset" class="pure-button button-style" onclick="gameplay.reset()">Reset</button>
     				</li>
