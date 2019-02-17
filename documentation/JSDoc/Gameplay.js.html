@@ -1,4 +1,32 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Gameplay.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Gameplay.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
  * @file Gameplay.js interacts with the html file and does most of the computation.
  * @author Ryan Pope, Giang Nguyen, Hirsh Guha, Jordan Love, John Quitno
  * 
@@ -30,11 +58,11 @@ var gameplay = {
             alert("Too many mines!!! The maximum number of mines for this board is "+(this.rows*this.cols-1));
             return;
         }
-        if (this.rows <2) {
+        if (this.rows &lt;2) {
             alert("The board must have atleast 2 rows.");
             return;
         }
-        if (this.cols <2) {
+        if (this.cols &lt;2) {
             alert("The board must have atleast 2 columns.");
             return;
         }
@@ -42,8 +70,8 @@ var gameplay = {
         this.myBoard = new Board(this.rows,this.cols,this.mines);
 
         /*console.log(this.rows+" "+this.cols+" "+this.mines);
-        for (let i=0;i<this.rows;i++)
-        for (let j=0;j<this.cols;j++)
+        for (let i=0;i&lt;this.rows;i++)
+        for (let j=0;j&lt;this.cols;j++)
         if (this.myBoard.getNumber(i,j)==-1) console.log(i+" "+j);*/
 
         gameplay.add_grid();
@@ -55,9 +83,9 @@ var gameplay = {
         */
     add_grid: function () {
         $('grid').innerHTML = '';
-        for (let i = 0; i < this.rows; i++) {
-            $('grid').innerHTML += '<br>';
-            for (let j = 0; j < this.cols; j++) {
+        for (let i = 0; i &lt; this.rows; i++) {
+            $('grid').innerHTML += '&lt;br>';
+            for (let j = 0; j &lt; this.cols; j++) {
                 gameplay.add_cell(i, j);
             }
         }
@@ -73,8 +101,8 @@ var gameplay = {
             classname = 'class="cell" ',
             onclick = 'onclick="gameplay.leftClick('+ row +','+ col +')" ',
             oncontext = 'oncontextmenu="gameplay.rightClick('+ row +','+ col +'); return false"',
-            button = ('<button '+ id + classname + onclick
-                      + oncontext + '>&nbsp;</button>');
+            button = ('&lt;button '+ id + classname + onclick
+                      + oncontext + '>&amp;nbsp;&lt;/button>');
 
         $('grid').innerHTML += button;
     },
@@ -93,12 +121,12 @@ var gameplay = {
         if (this.myBoard.isRevealed(row,col)) return;
         var id = 'cell-' + row + '-' + col;
         if (this.myBoard.flag(row,col)) {
-            $(id).innerHTML = '&#9873';
+            $(id).innerHTML = '&amp;#9873';
             $(id).style.color = '#ff0000';
             gameplay.checkWin();
         }
         else {
-            $(id).innerHTML = '&nbsp;';
+            $(id).innerHTML = '&amp;nbsp;';
             $(id).style.color = '#000000';
         }
     },
@@ -110,7 +138,7 @@ var gameplay = {
         */
     isInside: function(row, col)
     {
-        return(row>=0 && col>=0 && row<this.rows && col<this.cols);
+        return(row>=0 &amp;&amp; col>=0 &amp;&amp; row&lt;this.rows &amp;&amp; col&lt;this.cols);
     },
     /**
         * Recursive function that reveals all tiles not next to a mine.
@@ -121,7 +149,7 @@ var gameplay = {
     {
         if (!this.myBoard.reveal(row,col)) return;
         if (this.myBoard.getNumber(row,col)!=0) return;
-        for(let i=0;i<8;i++) {
+        for(let i=0;i&lt;8;i++) {
             let u = row+this.dx[i];
             let v = col+this.dy[i];
             if (gameplay.isInside(u,v)) gameplay.revealHelper(u,v);
@@ -167,13 +195,13 @@ var gameplay = {
         */
     checkLose: function () {
         this.ended = 1;
-        for (let i = 0; i < this.rows; i++) {
-            for (let j = 0; j < this.cols; j++) {
+        for (let i = 0; i &lt; this.rows; i++) {
+            for (let j = 0; j &lt; this.cols; j++) {
                 var id = 'cell-' + i + '-' + j;
                 if (this.myBoard.getNumber(i,j) == -1)
-                    $(id).innerHTML = '&#9728';
+                    $(id).innerHTML = '&amp;#9728';
                 else
-                    $(id).innerHTML = '&#9760';
+                    $(id).innerHTML = '&amp;#9760';
             }
         }
     },
@@ -185,10 +213,10 @@ var gameplay = {
         if(this.myBoard.getRevealed()==(this.rows*this.cols-this.mines))
         {
             this.ended = 1;
-            for (let i = 0; i < this.rows; i++)
-            for (let j = 0; j < this.cols; j++) {
+            for (let i = 0; i &lt; this.rows; i++)
+            for (let j = 0; j &lt; this.cols; j++) {
                 var id = 'cell-' + i + '-' + j;
-                $(id).innerHTML = '&#x2b50';
+                $(id).innerHTML = '&amp;#x2b50';
             }
         }
     }
@@ -200,3 +228,26 @@ window.onload = function ()
 {
     gameplay.start();
 }
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Board.html">Board</a></li><li><a href="Tile.html">Tile</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sun Feb 17 2019 13:54:20 GMT-0600 (Central Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
