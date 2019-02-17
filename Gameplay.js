@@ -23,11 +23,11 @@ var gameplay = {
             return;
         }
         if (this.rows <2) {
-            alert("The board must have atleast 2 rows.");
+            alert("The board must have at least 2 rows.");
             return;
         }
         if (this.cols <2) {
-            alert("The board must have atleast 2 columns.");
+            alert("The board must have at least 2 columns.");
             return;
         }
 
@@ -136,9 +136,14 @@ var gameplay = {
             for (let j = 0; j < this.cols; j++) {
                 var id = 'cell-' + i + '-' + j;
                 if (this.myBoard.getNumber(i,j) == -1)
+                {
+                    $(id).style.backgroundColor = '#ff0000';
                     $(id).innerHTML = '&#9728';
-                else
+                }
+                else{
+                    $(id).style.backgroundColor = '#ccc';
                     $(id).innerHTML = '&#9760';
+                }
             }
         }
     },
@@ -148,10 +153,21 @@ var gameplay = {
         if(this.myBoard.getRevealed()==(this.rows*this.cols-this.mines))
         {
             this.ended = 1;
-            for (let i = 0; i < this.rows; i++)
-            for (let j = 0; j < this.cols; j++) {
-                var id = 'cell-' + i + '-' + j;
-                $(id).innerHTML = '&#x2b50';
+            for (let i = 0; i < this.rows; i++) {
+                for (let j = 0; j < this.cols; j++) {
+                    var id = 'cell-' + i + '-' + j;
+
+                    if (this.myBoard.getNumber(i,j) == -1)
+                    {
+                        $(id).style.color = '#000000';
+                        $(id).style.backgroundColor = '#00FF00';
+                        $(id).innerHTML = '&#9728';
+                    }
+                    else{
+                        $(id).style.backgroundColor = '#ccc';
+                        $(id).innerHTML = '&#x2b50';
+                    }
+                }
             }
         }
     }
