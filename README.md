@@ -14,4 +14,4 @@ For generating the documentation for our javascript, we used [JSDoc](http://usej
 
 ##  Usage
 
-This app runs completely on the client side, so you just need to run the index.html. 
+This app runs completely on the client side, so you just need to run the minesweeper.html. 
