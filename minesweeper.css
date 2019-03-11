@@ -31,6 +31,7 @@
 #grid {
     text-align: center;
     white-space: nowrap;
+    float: right;
 }
 #instructions h2 {
     margin-left: 40px;
@@ -52,4 +53,9 @@
 }
 .cell:active {
     background: #AAA;
+}
+
+.selector
+{
+  float: left;
 }
