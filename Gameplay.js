@@ -1,11 +1,24 @@
 /**
  * @file Gameplay.js interacts with the html file and does most of the computation.
  * @author Ryan Pope, Giang Nguyen, Hirsh Guha, Jordan Love, John Quitno
- * 
+ *
  */
 var $ = function (id) { return document.getElementById(id);};
 
-
+//a bool to signal when the reveal powerup is selected.
+let reveal_powerup = false;
+//function to check if reveal powerup is enabled.
+let revealEnabled = function()
+{
+  if(document.getElementById("RevealCheckbox").checked)
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
 var gameplay = {
 
     rows:0,
@@ -136,13 +149,72 @@ var gameplay = {
         * @param {number} row - The row of the tile.
         * @param {number} col - The column of the tile..
         */
+
+
+    //Evan - Building into this function.
+    //Function will first check if the reveal powerup is enabled.
+    //if it is, this function will look very different.
+    //if not, proceed as usual.
     leftClick: function(row,col)
     {
+
         if (this.ended) {
             this.ended++;
             if (this.ended>3) alert("C'mon, the game ended. There's nothing you can do.");
             return;
         }
+
+        if(revealEnabled())
+        {
+          //then we do not do the regular left click, but rather reveal.
+
+          //we will reveal a 3x3 set of tiles.
+
+          //center
+          this.myBoard.reveal(row,col);
+          //left
+          if(this.myBoard.isInside(row-1,col))
+          {
+            this.myBoard.reveal(row-1,col);
+          }
+          //right
+          if(this.myBoard.isInside(row+1,col))
+          {
+            this.myBoard.reveal(row+1,col);
+          }
+          //up
+          if(this.myBoard.isInside(row,col+1))
+          {
+            this.myBoard.reveal(row,col+1)
+          }
+          //down
+          if(this.myBoard.isInside(row,col-1))
+          {
+            this.myBoard.reveal(row,col-1)
+          }
+          //down left
+          if(this.myBoard.isInside(row-1,col-1))
+          {
+            this.myBoard.reveal(row-1,col-1)
+          }
+          //down right
+          if(this.myBoard.isInside(row+1,col-1))
+          {
+            this.myBoard.reveal(row+1,col-1)
+          }
+          //up left
+          if(this.myBoard.isInside(row-1,col+1))
+          {
+            this.myBoard.reveal(row-1,col+1)
+          }
+          //up right
+          if(this.myBoard.isInside(row+1,col+1))
+          {
+            this.myBoard.reveal(row+1,col+1)
+          }
+        }
+
+
         if (this.myBoard.isFlagged(row,col) || this.myBoard.isRevealed(row,col)) return;
         if (this.myBoard.getNumber(row,col)==-1)
         {

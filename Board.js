@@ -1,7 +1,7 @@
 /**
  * @file Board class that holds and manuipulates board data and interacts with Tile.js and Gameplay.js.
  * @author Ryan Pope, Giang Nguyen, Hirsh Guha, Jordan Love, John Quitno
- * 
+ *
  */
 class Board {
     /**
@@ -59,7 +59,7 @@ class Board {
     /**
         * Sets the number for each postiion depending on how many mines are directly adjacent to each tile.
         * @param {number} - The x coordinate of a Tile.
-        * @param {number} - The y coordinate of a Tile. 
+        * @param {number} - The y coordinate of a Tile.
         */
 
     calculateNumber(x, y) {
@@ -80,7 +80,7 @@ class Board {
     /**
         * Returns a bool indicating whether the x,y position is in the board.
         * @param {number} - The x coordinate of a Tile.
-        * @param {number} - The y coordinate of a Tile. 
+        * @param {number} - The y coordinate of a Tile.
         * @return {bool} - returns a bool indicating whether the x,y position is in the board.
         */
     isInside(row, col) {
@@ -91,7 +91,7 @@ class Board {
     /**
         * Reveals a tile if it hasn't been revealed yet and returns true or false depending on whether or not it has.
         * @param {number} - The x coordinate of a Tile.
-        * @param {number} - The y coordinate of a Tile. 
+        * @param {number} - The y coordinate of a Tile.
         * @return {bool} - returns a bool indicating if the tile has been previously revealed .
         */
     reveal(x, y) {
@@ -120,10 +120,20 @@ class Board {
         this.num_revealed++;
         return true;
     }
+
+
+    //for the sake of reveal powerup and cheatmode, it has become necessary to create a "hide"
+    //method. This method will return the tile clicked referenced back to its normal hidden state.
+    hide(x,y)
+    {
+      
+    }
+
+
     /**
         * Returns true or false depending on whether or not it has been revealed.
         * @param {number} - The x coordinate of a Tile.
-        * @param {number} - The y coordinate of a Tile. 
+        * @param {number} - The y coordinate of a Tile.
         * @return {bool} - returns a bool indicating if the tile has been previously revealed .
         */
     isRevealed(x, y) {
@@ -132,7 +142,7 @@ class Board {
     /**
         * Flags a tile if it has't been flagged, and unflag it if it has.
         * @param {number} - The x coordinate of a Tile.
-        * @param {number} - The y coordinate of a Tile. 
+        * @param {number} - The y coordinate of a Tile.
         * @return {bool} - returns a bool indicating the position has been flagged.
         */
     flag(x, y) {
@@ -153,7 +163,7 @@ class Board {
     /**
         * Returns true or false depending on whether or not it has been flagged.
         * @param {number} - The x coordinate of a Tile.
-        * @param {number} - The y coordinate of a Tile. 
+        * @param {number} - The y coordinate of a Tile.
         * @return {bool} - returns a bool indicating if the tile has been previously flagged .
         */
     isFlagged(x, y) {
@@ -162,7 +172,7 @@ class Board {
     /**
         * returns the number of bombs surrounding a tile.
         * @param {number} - The x coordinate of a Tile.
-        * @param {number} - The y coordinate of a Tile. 
+        * @param {number} - The y coordinate of a Tile.
         * @return {number} - returns the number of bombs surrounding a tile .
         */
     getNumber(x, y) {
@@ -171,7 +181,7 @@ class Board {
     /**
         * returns the number of revealed tiles..
         * @param {number} - The x coordinate of a Tile.
-        * @param {number} - The y coordinate of a Tile. 
+        * @param {number} - The y coordinate of a Tile.
         * @return {number} - returns the number of revealed tiles..
         */
     getRevealed() {
