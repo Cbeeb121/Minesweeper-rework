@@ -19,6 +19,7 @@ let revealEnabled = function()
     return false;
   }
 }
+
 var gameplay = {
 
     rows:0,
@@ -171,66 +172,129 @@ var gameplay = {
           //we will reveal a 3x3 set of tiles.
 
           //center
-          this.myBoard.reveal(row,col);
+          this.myBoard.reveal(row,col,true);
           //left
           if(this.myBoard.isInside(row-1,col))
           {
-            this.myBoard.reveal(row-1,col);
+            this.myBoard.reveal(row-1,col, true);
           }
           //right
           if(this.myBoard.isInside(row+1,col))
           {
-            this.myBoard.reveal(row+1,col);
+            this.myBoard.reveal(row+1,col, true);
           }
           //up
           if(this.myBoard.isInside(row,col+1))
           {
-            this.myBoard.reveal(row,col+1)
+            this.myBoard.reveal(row,col+1, true)
           }
           //down
           if(this.myBoard.isInside(row,col-1))
           {
-            this.myBoard.reveal(row,col-1)
+            this.myBoard.reveal(row,col-1, true)
           }
           //down left
           if(this.myBoard.isInside(row-1,col-1))
           {
-            this.myBoard.reveal(row-1,col-1)
+            this.myBoard.reveal(row-1,col-1, true)
           }
           //down right
           if(this.myBoard.isInside(row+1,col-1))
           {
-            this.myBoard.reveal(row+1,col-1)
+            this.myBoard.reveal(row+1,col-1, true)
           }
           //up left
           if(this.myBoard.isInside(row-1,col+1))
           {
-            this.myBoard.reveal(row-1,col+1)
+            this.myBoard.reveal(row-1,col+1, true)
           }
           //up right
           if(this.myBoard.isInside(row+1,col+1))
           {
-            this.myBoard.reveal(row+1,col+1)
+            this.myBoard.reveal(row+1,col+1, true)
+          }
+
+//window.alert(this);
+let obj = this;
+          //wait here
+          let r = function(row, col, obj)
+          {
+            //window.alert(obj);
+            //center
+            obj.myBoard.hide(row,col);
+            //left
+            if(obj.myBoard.isInside(row-1,col))
+            {
+              //window.alert("in");
+              obj.myBoard.hide(row-1,col);
+            }
+            //right
+            if(obj.myBoard.isInside(row+1,col))
+            {
+              obj.myBoard.hide(row+1,col);
+            }
+            //up
+            if(obj.myBoard.isInside(row,col+1))
+            {
+              obj.myBoard.hide(row,col+1);
+            }
+            //down
+            if(obj.myBoard.isInside(row,col-1))
+            {
+              obj.myBoard.hide(row,col-1);
+            }
+            //down left
+            if(obj.myBoard.isInside(row-1,col-1))
+            {
+              obj.myBoard.hide(row-1,col-1);
+            }
+            //down right
+            if(obj.myBoard.isInside(row+1,col-1))
+            {
+              obj.myBoard.hide(row+1,col-1);
+            }
+            //up left
+            if(obj.myBoard.isInside(row-1,col+1))
+            {
+              obj.myBoard.hide(row-1,col+1);
+            }
+            //up right
+            if(obj.myBoard.isInside(row+1,col+1))
+            {
+              obj.myBoard.hide(row+1,col+1);
+            }
+
+          }
+
+let p = setTimeout(function(){r(row, col, obj);},3000);
+//p();
+          //wait a 3 seconds then undo the reveal.
+          //var myvar = setTimeout(hideClick(row,col),1000);
+          //if(this.myBoard.isInside(row+1,col+1))
+          //{
+          //  this.myBoard.hide(row+1,col+1)
+        //  }
+        }
+        else {
+          if (this.myBoard.isFlagged(row,col) || this.myBoard.isRevealed(row,col)) return;
+          if (this.myBoard.getNumber(row,col)==-1)
+          {
+              this.checkLose(row,col);
+          }
+          else if (this.myBoard.getNumber(row,col)==0)
+          {
+              //recursive stuff
+              gameplay.revealHelper(row,col);
+              this.checkWin();
+          }
+          else
+          {
+              this.myBoard.reveal(row,col);
+              this.checkWin();
           }
         }
 
 
-        if (this.myBoard.isFlagged(row,col) || this.myBoard.isRevealed(row,col)) return;
-        if (this.myBoard.getNumber(row,col)==-1)
-        {
-            this.checkLose(row,col);
-        }
-        else if (this.myBoard.getNumber(row,col)==0)
-        {
-            //recursive stuff
-            gameplay.revealHelper(row,col);
-            this.checkWin();
-        }
-        else
-        {
-            this.myBoard.reveal(row,col);
-            this.checkWin();
-        }
     },
     /**
         * Resets the board.

@@ -94,39 +94,75 @@ class Board {
         * @param {number} - The y coordinate of a Tile.
         * @return {bool} - returns a bool indicating if the tile has been previously revealed .
         */
-    reveal(x, y) {
-        if (this.tiles[x][y].getRevealed || this.tiles[x][y].getFlag) return false;
+    reveal(x, y, tempBool = false) {
+if(tempBool)
+{
+  if (this.tiles[x][y].getRevealed || this.tiles[x][y].getFlag) return false;
 
-        var id = 'cell-' + x + '-' + y;
+  var id = 'cell-' + x + '-' + y;
 
-        //some colorful styling!!
-        switch (this.tiles[x][y].getNumber) {
-            case 1:
-                $(id).style.color = 'blue'; break;
-            case 2:
-                $(id).style.color = 'green'; break;
-            case 3:
-                $(id).style.color = 'red'; break;
-            case 4:
-                $(id).style.color = 'purple'; break;
-            default:
-                $(id).style.color = 'black'; break;
-        }
-        $(id).style.background = '#EEE';
-        if (this.tiles[x][y].getNumber!=0)
-            $(id).innerHTML = this.tiles[x][y].getNumber;
+  //some colorful styling!!
+  switch (this.tiles[x][y].getNumber) {
+      case 1:
+          $(id).style.color = 'blue'; break;
+      case 2:
+          $(id).style.color = 'green'; break;
+      case 3:
+          $(id).style.color = 'red'; break;
+      case 4:
+          $(id).style.color = 'purple'; break;
+      default:
+          $(id).style.color = 'black'; break;
+  }
+  $(id).style.background = '#EEE';
+  if (this.tiles[x][y].getNumber!=0)
+      $(id).innerHTML = this.tiles[x][y].getNumber;
 
-        this.tiles[x][y].setRevealed(true);
-        this.num_revealed++;
-        return true;
+  //this.tiles[x][y].setRevealed(true);
+  //this.num_revealed++;
+  return true;
+}
+else
+{
+  if (this.tiles[x][y].getRevealed || this.tiles[x][y].getFlag) return false;
+
+  var id = 'cell-' + x + '-' + y;
+
+  //some colorful styling!!
+  switch (this.tiles[x][y].getNumber) {
+      case 1:
+          $(id).style.color = 'blue'; break;
+      case 2:
+          $(id).style.color = 'green'; break;
+      case 3:
+          $(id).style.color = 'red'; break;
+      case 4:
+          $(id).style.color = 'purple'; break;
+      default:
+          $(id).style.color = 'black'; break;
+  }
+  $(id).style.background = '#EEE';
+  if (this.tiles[x][y].getNumber!=0)
+      $(id).innerHTML = this.tiles[x][y].getNumber;
+
+  this.tiles[x][y].setRevealed(true);
+  this.num_revealed++;
+  return true;
+}
+
+
     }
 
 
     //for the sake of reveal powerup and cheatmode, it has become necessary to create a "hide"
     //method. This method will return the tile clicked referenced back to its normal hidden state.
-    hide(x,y)
+    hide(row,col)
     {
-      
+      var id = 'cell-' + row + '-' + col;
+      $(id).style.backgroundColor = '#666';
+      $(id).innerHTML = '&nbsp';
+      //this.tiles[x][y].setRevealed(false);
+      //this.num_revealed--;
     }
 
 
