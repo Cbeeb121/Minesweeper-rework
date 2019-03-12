@@ -221,45 +221,49 @@ let obj = this;
           {
             //window.alert(obj);
             //center
-            obj.myBoard.hide(row,col);
+            if(!obj.myBoard.isRevealed(row,col))
+            {
+                obj.myBoard.hide(row,col);
+            }
+
             //left
-            if(obj.myBoard.isInside(row-1,col))
+            if(obj.myBoard.isInside(row-1,col) && !(obj.myBoard.isRevealed(row-1,col)))
             {
               //window.alert("in");
               obj.myBoard.hide(row-1,col);
             }
             //right
-            if(obj.myBoard.isInside(row+1,col))
+            if(obj.myBoard.isInside(row+1,col) && !(obj.myBoard.isRevealed(row+1,col)))
             {
               obj.myBoard.hide(row+1,col);
             }
             //up
-            if(obj.myBoard.isInside(row,col+1))
+            if(obj.myBoard.isInside(row,col+1) && !(obj.myBoard.isRevealed(row,col+1)))
             {
               obj.myBoard.hide(row,col+1);
             }
             //down
-            if(obj.myBoard.isInside(row,col-1))
+            if(obj.myBoard.isInside(row,col-1) && !(obj.myBoard.isRevealed(row,col-1)))
             {
               obj.myBoard.hide(row,col-1);
             }
             //down left
-            if(obj.myBoard.isInside(row-1,col-1))
+            if(obj.myBoard.isInside(row-1,col-1) && !(obj.myBoard.isRevealed(row-1,col-1)))
             {
               obj.myBoard.hide(row-1,col-1);
             }
             //down right
-            if(obj.myBoard.isInside(row+1,col-1))
+            if(obj.myBoard.isInside(row+1,col-1) && !(obj.myBoard.isRevealed(row+1,col-1)))
             {
               obj.myBoard.hide(row+1,col-1);
             }
             //up left
-            if(obj.myBoard.isInside(row-1,col+1))
+            if(obj.myBoard.isInside(row-1,col+1) && !(obj.myBoard.isRevealed(row-1,col+1)))
             {
               obj.myBoard.hide(row-1,col+1);
             }
             //up right
-            if(obj.myBoard.isInside(row+1,col+1))
+            if(obj.myBoard.isInside(row+1,col+1) && !(obj.myBoard.isRevealed(row+1,col+1)))
             {
               obj.myBoard.hide(row+1,col+1);
             }
