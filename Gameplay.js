@@ -10,7 +10,10 @@ let reveal_powerup = false;
 //function to check if reveal powerup is enabled.
 let revealEnabled = function()
 {
-  if(document.getElementById("RevealCheckbox").checked)
+  let PowerupString = document.getElementById("RevealQuantity_Attach").value;
+  let PowerupNum = parseInt(PowerupString,10);
+//  window.alert(PowerupNum);
+  if(document.getElementById("RevealCheckbox").checked && PowerupNum > 0)
   {
     return true;
   }
@@ -171,6 +174,19 @@ var gameplay = {
 
           //we will reveal a 3x3 set of tiles.
 
+          //deduct one powerup
+          let PowerupString = document.getElementById("RevealQuantity_Attach").value;
+          let PowerupNum = parseInt(PowerupString,10);
+          PowerupNum--;
+          let UpdateStr = "Reveals remaining: " + PowerupNum;
+          document.getElementById("RevealQuantity_Attach").value = PowerupNum;
+          document.getElementById("RevealQuantity").innerHTML = UpdateStr;
+          if(PowerupNum < 1)
+          {
+            document.getElementById("RevealCheckbox").checked = false;
+            document.getElementById("RevealCheckbox").disabled = true;
+            window.alert("This is your last REVEAL powerup.");
+          }
           //center
           this.myBoard.reveal(row,col,true);
           //left
