@@ -187,12 +187,12 @@ else
             this.num_flagged--;
         }
         else {
-          if (this.num_flagged<this.num_mines) {
+          //if (this.num_flagged<this.num_mines) {
               this.tiles[x][y].setFlag(true);
               this.num_flagged++;
               return true;
-          }
-          else alert("No more flags available")
+          //}
+          //else alert("No more flags available")
         }
         return false;
     }
