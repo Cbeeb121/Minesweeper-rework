@@ -7,6 +7,9 @@ var $ = function (id) { return document.getElementById(id);};
 
 //a bool to signal when the reveal powerup is selected.
 let reveal_powerup = false;
+//a bool to signal when the invincibility powerup is selected
+let invincibility_powerup = false;
+
 //function to check if reveal powerup is enabled.
 let revealEnabled = function()
 {
@@ -19,6 +22,20 @@ let revealEnabled = function()
   }
   else
   {
+    return false;
+  }
+}
+
+//function checking if invincibility powerup is enabled
+let invincibilityEnabled = function()
+{
+  let invincibilityString = document.getElementById("InvincibilityQuantity_Attach").value;
+  let InvincibilityRemain = parseInt(invincibilityString, 10);
+
+  if (document.getElementById("InvincibilityCheckbox").checked && InvincibilityRemain > 0) {
+    return true;
+  }
+  else {
     return false;
   }
 }
@@ -297,7 +314,28 @@ let p = setTimeout(function(){r(row, col, obj);},3000);
         }
         else {
           if (this.myBoard.isFlagged(row,col) || this.myBoard.isRevealed(row,col)) return;
-          if (this.myBoard.getNumber(row,col)==-1)
+          if (this.myBoard.getNumber(row,col) == -1 && invincibilityEnabled())
+          {
+            //decrement one powerup on conditions that bomb is clicked and checkbox is enabled
+            this.ended = 0;
+            freeBomb = 'cell-' + row + '-' + col;
+            let invincibilityString = document.getElementById("InvincibilityQuantity_Attach").value;
+            let InvincibilityRemain = parseInt(invincibilityString,10);
+            InvincibilityRemain--;
+            let newQuantity = "Invincibilities remaining: " + InvincibilityRemain;
+            document.getElementById("InvincibilityQuantity_Attach").value = InvincibilityRemain;
+            document.getElementById("InvincibilityQuantity").innerHTML = newQuantity;
+            if(InvincibilityRemain < 1)
+            {
+              document.getElementById("InvincibilityCheckbox").checked = false;
+              document.getElementById("InvincibilityCheckbox").disabled = true;
+              window.alert("You have no invincibility powerups remaining");
+            }
+            $(freeBomb).style.backgroundColor = '#ff0000';
+            $(freeBomb).innerHTML = '&#9728';
+            return;
+          }
+          else if (this.myBoard.getNumber(row,col)==-1 && !invincibilityEnabled())
           {
               this.checkLose(row,col);
           }
@@ -323,17 +361,18 @@ let p = setTimeout(function(){r(row, col, obj);},3000);
         gameplay.start();
     },
     /**
-        * Checks if a bomb was clicked and stopes the game if it was.
+        * Checks if a bomb was clicked, and stops the game if so
         */
     checkLose: function () {
+
         this.ended = 1;
         for (let i = 0; i < this.rows; i++) {
             for (let j = 0; j < this.cols; j++) {
                 var id = 'cell-' + i + '-' + j;
-                if (this.myBoard.getNumber(i,j) == -1)
-                {
-                    $(id).style.backgroundColor = '#ff0000';
-                    $(id).innerHTML = '&#9728';
+                if (this.myBoard.getNumber(i,j) == -1) {
+                  $(id).style.backgroundColor = '#ff0000';
+                  $(id).innerHTML = '&#9728';
+
                 }
                 else{
                     $(id).style.backgroundColor = '#ccc';
