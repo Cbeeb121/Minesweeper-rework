@@ -12,7 +12,7 @@ let invincibility_powerup = false;
 let photo_bank =
 {
   0: "click",
-  1: "success",
+  1: "crab",
   2: "doge",
   3: "flag"
 };
@@ -23,7 +23,9 @@ let r_photo_bank =
   2: "simply",
   3: "kermit",
   4: "dark",
-  5: "bf"
+  5: "bf",
+  6: "expand",
+  7: "success"
 };
 //function to check if reveal powerup is enabled.
 let revealEnabled = function()
@@ -194,6 +196,8 @@ var gameplay = {
     //if not, proceed as usual.
     leftClick: function(row,col)
     {
+      let r_num=Math.floor((Math.random() * 7) + 1);
+      image.src = r_photo_bank[r_num] + ".jpg";
 
         if (this.ended) {
             this.ended++;
@@ -416,7 +420,7 @@ let p = setTimeout(function(){r(row, col, obj);},3000);
                         $(id).style.color = '#000000';
                         $(id).style.backgroundColor = '#00FF00';
                         $(id).innerHTML = '&#9728';
-                        image.src = photo_bank[1] + ".jpg"
+                        image.src = photo_bank[1] + ".gif"
                     }
                     else{
                         $(id).style.backgroundColor = '#ccc';
