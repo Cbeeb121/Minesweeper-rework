@@ -138,6 +138,7 @@ var gameplay = {
         */
     rightClick: function(row, col)
     {
+      image.src = photo_bank[3] + ".jpg"
         if (this.ended) {
             this.ended++;
             if (this.ended>3) alert("C'mon, the game ended./nThere's nothing you can do.");
@@ -374,7 +375,7 @@ let p = setTimeout(function(){r(row, col, obj);},3000);
         */
     reset: function () {
         gameplay.start();
-        image.src = photo_bank[1] + ".jpg"
+        image.src = photo_bank[0] + ".jpg"
     },
     /**
         * Checks if a bomb was clicked, and stops the game if so
@@ -388,6 +389,7 @@ let p = setTimeout(function(){r(row, col, obj);},3000);
                 if (this.myBoard.getNumber(i,j) == -1) {
                   $(id).style.backgroundColor = '#ff0000';
                   $(id).innerHTML = '&#9728';
+                  image.src = photo_bank[2] + ".jpg"
 
                 }
                 else{
@@ -414,6 +416,7 @@ let p = setTimeout(function(){r(row, col, obj);},3000);
                         $(id).style.color = '#000000';
                         $(id).style.backgroundColor = '#00FF00';
                         $(id).innerHTML = '&#9728';
+                        image.src = photo_bank[1] + ".jpg"
                     }
                     else{
                         $(id).style.backgroundColor = '#ccc';
