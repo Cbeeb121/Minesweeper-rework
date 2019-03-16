@@ -9,7 +9,22 @@ var $ = function (id) { return document.getElementById(id);};
 let reveal_powerup = false;
 //a bool to signal when the invincibility powerup is selected
 let invincibility_powerup = false;
-
+let photo_bank =
+{
+  0: "click",
+  1: "success",
+  2: "doge",
+  3: "flag"
+};
+let r_photo_bank =
+{
+  0: "bomb",
+  1: "drake",
+  2: "simply",
+  3: "kermit",
+  4: "dark",
+  5: "bf"
+};
 //function to check if reveal powerup is enabled.
 let revealEnabled = function()
 {
@@ -359,6 +374,7 @@ let p = setTimeout(function(){r(row, col, obj);},3000);
         */
     reset: function () {
         gameplay.start();
+        image.src = photo_bank[1] + ".jpg"
     },
     /**
         * Checks if a bomb was clicked, and stops the game if so
