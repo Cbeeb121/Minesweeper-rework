@@ -379,6 +379,21 @@ let p = setTimeout(function(){r(row, col, obj);},3000);
         * Resets the board.
         */
     reset: function () {
+      //Adding some stuff here to reset invincibility and reveal powerup.
+      PowerupNum = 1;
+      let UpdateStr = "Reveals remaining: " + PowerupNum;
+      document.getElementById("RevealQuantity_Attach").value = PowerupNum;
+      document.getElementById("RevealQuantity").innerHTML = UpdateStr;
+      document.getElementById("RevealCheckbox").checked = false;
+      document.getElementById("RevealCheckbox").disabled = false;
+      //
+      InvincibilityRemain = 1;
+      let newQuantity = "Invincibilities remaining: " + InvincibilityRemain;
+      document.getElementById("InvincibilityQuantity_Attach").value = InvincibilityRemain;
+      document.getElementById("InvincibilityQuantity").innerHTML = newQuantity;
+      document.getElementById("InvincibilityCheckbox").checked = false;
+      document.getElementById("InvincibilityCheckbox").disabled = false;
+      //
         gameplay.start();
         image.src = photo_bank[0] + ".jpg"
     },
