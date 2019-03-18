@@ -11,7 +11,7 @@ let reveal_powerup = false;
 let invincibility_powerup = false;
 //a bool to signal when the cheatmode powerup is selected
 let cheatmode_powerup = false;
-let cheatModeUsed = false;
+let cheatModeUsed = true;
 
 let photo_bank =
 {
@@ -45,15 +45,6 @@ let revealEnabled = function()
   else
   {
     return false;
-  }
-}
-
-let cheatmodeEnabled = function()
-{
-  if(document.getElementById("Cheatmode").clicked == true && cheatmodeUsed == false)
-  {
-    cheatmodeUsed = true;
-    return true;
   }
 }
 
@@ -121,23 +112,28 @@ var gameplay = {
     },
 
     cheat_mode: function () {
-      for (let i = 0; i < this.rows; i++) {
-        for (let j = 0; j < this.cols; j++) {
-          if(this.myBoard.isInside(i,j))
-          {
-            this.myBoard.reveal(i,j,true);
+      if (cheatModeUsed){
+        for (let i = 0; i < this.rows; i++) {
+          for (let j = 0; j < this.cols; j++) {
+            if(this.myBoard.isInside(i,j) && !this.myBoard.isRevealed(i,j))
+            {
+              this.myBoard.reveal(i,j,true);
+            }
           }
         }
       }
-      wait(5000);
-      for (let i = 0; i < this.rows; i++) {
-        for (let j = 0; j < this.cols; j++) {
-          if(this.myBoard.isRevealed(i,j))
-          {
-            this.myBoard.hide(i,j);
+      else
+      {
+        for (let i = 0; i < this.rows; i++) {
+          for (let j = 0; j < this.cols; j++) {
+            if(!this.myBoard.isRevealed(i,j))
+            {
+              this.myBoard.hide(i,j);
+            }
           }
         }
       }
+      cheatModeUsed = !cheatModeUsed;
     },
     /**
         * Adds the grid of the correct size to the html file.
@@ -355,7 +351,6 @@ let obj = this;
             {
               obj.myBoard.hide(row+1,col+1);
             }
-
           }
 
 let p = setTimeout(function(){r(row, col, obj);},3000);
@@ -488,12 +483,4 @@ let p = setTimeout(function(){r(row, col, obj);},3000);
 window.onload = function ()
 {
     gameplay.start();
-}
-
-function wait(ms){
-   let start = new Date().getTime();
-   let end = start;
-   while(end < start + ms) {
-     end = new Date().getTime();
-  }
 }
