@@ -128,7 +128,15 @@ var gameplay = {
           for (let j = 0; j < this.cols; j++) {
             if(!this.myBoard.isRevealed(i,j))
             {
-              this.myBoard.hide(i,j);
+              if(this.myBoard.isFlagged(i,j))
+              {
+                this.myBoard.flagHide(i,j);
+              }
+              else
+              {
+                  this.myBoard.hide(i,j);
+              }
+
             }
           }
         }

@@ -158,14 +158,21 @@ else
     //method. This method will return the tile clicked referenced back to its normal hidden state.
     hide(row,col)
     {
+
       var id = 'cell-' + row + '-' + col;
-      $(id).style.backgroundColor = '#666';
-      $(id).innerHTML = '&nbsp';
-      //this.tiles[x][y].setRevealed(false);
-      //this.num_revealed--;
+
+          $(id).style.backgroundColor = '#666';
+          $(id).innerHTML = '&nbsp';
+
     }
 
+    flagHide(row, col)
+    {
+      var id = 'cell-' + row + '-' + col;
 
+      $(id).innerHTML = '&#9873';
+      $(id).style.color = '#ff0000';
+    }
     /**
         * Returns true or false depending on whether or not it has been revealed.
         * @param {number} - The x coordinate of a Tile.
