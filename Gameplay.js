@@ -50,14 +50,10 @@ let revealEnabled = function()
 
 let cheatmodeEnabled = function()
 {
-  if(document.getElementById("RevealCheatmode").clicked == true && cheatmodeUsed == false)
+  if(document.getElementById("Cheatmode").clicked == true && cheatmodeUsed == false)
   {
     cheatmodeUsed = true;
     return true;
-  }
-  else
-  {
-    return false;
   }
 }
 
@@ -123,6 +119,26 @@ var gameplay = {
         //onclick stuff
 
     },
+
+    cheat_mode: function () {
+      for (let i = 0; i < this.rows; i++) {
+        for (let j = 0; j < this.cols; j++) {
+          if(this.myBoard.isInside(i,j))
+          {
+            this.myBoard.reveal(i,j,true);
+          }
+        }
+      }
+      wait(5000);
+      for (let i = 0; i < this.rows; i++) {
+        for (let j = 0; j < this.cols; j++) {
+          if(this.myBoard.isRevealed(i,j))
+          {
+            this.myBoard.hide(i,j);
+          }
+        }
+      }
+    },
     /**
         * Adds the grid of the correct size to the html file.
         */
@@ -135,6 +151,7 @@ var gameplay = {
             }
         }
     },
+
     /**
         * Adds an individual cell to our grid.
         * @param {number} row - The row of the cell being added.
@@ -350,29 +367,6 @@ let p = setTimeout(function(){r(row, col, obj);},3000);
           //  this.myBoard.hide(row+1,col+1)
         //  }
         }
-
-  //bumbumbum
-  if(cheatmodeEnabled())
-  {
-    for (let i = 0; i < this.rows; i++) {
-      for (let j = 0; j < this.cols; j++) {
-        if(this.myBoard.isInside(i,j))
-        {
-          this.myBoard.reveal(i,j,true);
-        }
-      }
-    }
-    wait(5000);
-
-      for (let i = 0; i < this.rows; i++) {
-        for (let j = 0; j < this.cols; j++) {
-          if(this.myBoard.isRevealed(i,j))
-          {
-            this.myBoard.hide(i,j);
-          }
-        }
-      }
-    }
 
         else {
           if (this.myBoard.isFlagged(row,col) || this.myBoard.isRevealed(row,col)) return;
