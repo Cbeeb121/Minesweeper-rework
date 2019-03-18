@@ -9,6 +9,10 @@ var $ = function (id) { return document.getElementById(id);};
 let reveal_powerup = false;
 //a bool to signal when the invincibility powerup is selected
 let invincibility_powerup = false;
+//a bool to signal when the cheatmode powerup is selected
+let cheatmode_powerup = false;
+let cheatModeUsed = false;
+
 let photo_bank =
 {
   0: "click",
@@ -36,6 +40,19 @@ let revealEnabled = function()
 //  window.alert(PowerupNum);
   if(document.getElementById("RevealCheckbox").checked && PowerupNum > 0)
   {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
+
+let cheatmodeEnabled = function()
+{
+  if(document.getElementById("RevealCheatmode").clicked == true && cheatmodeUsed == false)
+  {
+    cheatmodeUsed = true;
     return true;
   }
   else
@@ -333,6 +350,30 @@ let p = setTimeout(function(){r(row, col, obj);},3000);
           //  this.myBoard.hide(row+1,col+1)
         //  }
         }
+
+  //bumbumbum
+  if(cheatmodeEnabled())
+  {
+    for (let i = 0; i < this.rows; i++) {
+      for (let j = 0; j < this.cols; j++) {
+        if(this.myBoard.isInside(i,j))
+        {
+          this.myBoard.reveal(i,j,true);
+        }
+      }
+    }
+    wait(5000);
+
+      for (let i = 0; i < this.rows; i++) {
+        for (let j = 0; j < this.cols; j++) {
+          if(this.myBoard.isRevealed(i,j))
+          {
+            this.myBoard.hide(i,j);
+          }
+        }
+      }
+    }
+
         else {
           if (this.myBoard.isFlagged(row,col) || this.myBoard.isRevealed(row,col)) return;
           if (this.myBoard.getNumber(row,col) == -1 && invincibilityEnabled())
@@ -453,4 +494,12 @@ let p = setTimeout(function(){r(row, col, obj);},3000);
 window.onload = function ()
 {
     gameplay.start();
+}
+
+function wait(ms){
+   let start = new Date().getTime();
+   let end = start;
+   while(end < start + ms) {
+     end = new Date().getTime();
+  }
 }
