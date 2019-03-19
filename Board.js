@@ -94,12 +94,21 @@ class Board {
         * @param {number} - The y coordinate of a Tile.
         * @return {bool} - returns a bool indicating if the tile has been previously revealed .
         */
-    reveal(x, y, tempBool = false) {
+    reveal(x, y, tempBool = false, bombBool = false) {
 if(tempBool)
 {
   if (this.tiles[x][y].getRevealed || this.tiles[x][y].getFlag) return false;
 
   var id = 'cell-' + x + '-' + y;
+
+
+  if(this.tiles[x][y].number == -1)
+  {
+    $(id).style.backgroundColor = '#ff0000';
+    $(id).innerHTML = '&#9728';
+    return true;
+  }
+
 
   //some colorful styling!!
   switch (this.tiles[x][y].getNumber) {

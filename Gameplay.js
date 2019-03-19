@@ -117,7 +117,11 @@ var gameplay = {
           for (let j = 0; j < this.cols; j++) {
             if(this.myBoard.isInside(i,j) && !this.myBoard.isRevealed(i,j))
             {
-              this.myBoard.reveal(i,j,true);
+              //if not a bomb
+              
+                this.myBoard.reveal(i,j,true);
+
+              //else
             }
           }
         }

@@ -1,7 +1,7 @@
 /**
  * @file Tile class that holds all information for a tile and gives board access to it.
  * @author Ryan Pope, Giang Nguyen, Hirsh Guha, Jordan Love, John Quitno
- * 
+ *
  */
 class Tile {
     /**
@@ -61,13 +61,13 @@ class Tile {
         this.number = -1;
     }
 
-    /**
+        /**
         * Returns bool indicating if there is a mine.
         *  @return {bool} - Returns bool indicating mine.
         */
     isMine()
     {
-        return (this.number==-1);
+        return (this.number == -1);
     }
 
     /**
