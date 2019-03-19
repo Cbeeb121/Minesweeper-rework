@@ -11,7 +11,7 @@ let reveal_powerup = false;
 let invincibility_powerup = false;
 //a bool to signal when the cheatmode has been used. Toggles when 'cheat button' is clicked
 let cheatModeUsed = true;
-
+//photo banks with memes
 let photo_bank =
 {
   0: "click",
@@ -54,9 +54,9 @@ let revealEnabled = function()
   }
 }
 
-/**
-  * function checking if invincibility powerup is enabled
-  */
+/**Checks if invincibility powerup is enabled
+  *@return {bool} -returns true if enabled, false if not
+*/
 let invincibilityEnabled = function()
 {
   let invincibilityString = document.getElementById("InvincibilityQuantity_Attach").value;
@@ -120,7 +120,7 @@ var gameplay = {
     },
     /**
         * Reveals all tiles on the board indefinitely regardless of bomb, adjacent or empty values
-        * Toggles on (true) / off (false) based on 'cheatmode' button click 
+        * Toggles on (true) / off (false) based on 'cheatmode' button click
         */
     cheat_mode: function () {
       if (cheatModeUsed){
@@ -192,7 +192,7 @@ var gameplay = {
         */
     rightClick: function(row, col)
     {
-      image.src = photo_bank[3] + ".jpg"
+      image.src = photo_bank[3] + ".jpg" //shows flag meme
         if (this.ended) {
             this.ended++;
             if (this.ended>3) alert("C'mon, the game ended./nThere's nothing you can do.");
@@ -248,6 +248,7 @@ var gameplay = {
     //if not, proceed as usual.
     leftClick: function(row,col)
     {
+      //randomizes then shows left click meme
       let r_num=Math.floor((Math.random() * 14) + 1);
       image.src = r_photo_bank[r_num] + ".jpg";
 
@@ -446,7 +447,7 @@ let p = setTimeout(function(){r(row, col, obj);},3000);
       document.getElementById("InvincibilityCheckbox").disabled = false;
       //
         gameplay.start();
-        image.src = photo_bank[0] + ".jpg"
+        image.src = photo_bank[0] + ".jpg" //shows start meme
     },
     /**
         * Checks if a bomb was clicked, and stops the game if so
@@ -460,7 +461,7 @@ let p = setTimeout(function(){r(row, col, obj);},3000);
                 if (this.myBoard.getNumber(i,j) == -1) {
                   $(id).style.backgroundColor = '#ff0000';
                   $(id).innerHTML = '&#9728';
-                  image.src = photo_bank[2] + ".jpg"
+                  image.src = photo_bank[2] + ".jpg" //shows losing meme
 
                 }
                 else{
@@ -487,7 +488,7 @@ let p = setTimeout(function(){r(row, col, obj);},3000);
                         $(id).style.color = '#000000';
                         $(id).style.backgroundColor = '#00FF00';
                         $(id).innerHTML = '&#9728';
-                        image.src = photo_bank[1] + ".gif"
+                        image.src = photo_bank[1] + ".gif" //shows winning meme
                     }
                     else{
                         $(id).style.backgroundColor = '#ccc';
