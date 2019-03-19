@@ -9,8 +9,7 @@ var $ = function (id) { return document.getElementById(id);};
 let reveal_powerup = false;
 //a bool to signal when the invincibility powerup is selected
 let invincibility_powerup = false;
-//a bool to signal when the cheatmode powerup is selected
-let cheatmode_powerup = false;
+//a bool to signal when the cheatmode has been used. Toggles when 'cheat button' is clicked
 let cheatModeUsed = true;
 //photo banks with memes
 let photo_bank =
