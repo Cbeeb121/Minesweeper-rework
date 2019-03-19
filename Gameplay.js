@@ -1,6 +1,7 @@
 /**
  * @file Gameplay.js interacts with the html file and does most of the computation.
  * @author Ryan Pope, Giang Nguyen, Hirsh Guha, Jordan Love, John Quitno
+ * @contributors Evan Gofourth, Clay Beabout, Alex Johnson, Sandy Rech
  *
  */
 var $ = function (id) { return document.getElementById(id);};
@@ -108,11 +109,6 @@ var gameplay = {
         }
 
         this.myBoard = new Board(this.rows,this.cols,this.mines);
-
-        /*console.log(this.rows+" "+this.cols+" "+this.mines);
-        for (let i=0;i<this.rows;i++)
-        for (let j=0;j<this.cols;j++)
-        if (this.myBoard.getNumber(i,j)==-1) console.log(i+" "+j);*/
 
         gameplay.add_grid();
         //onclick stuff
@@ -325,7 +321,6 @@ let obj = this;
           //wait here
            let r = function(row, col, obj)
           {
-            //window.alert(obj);
             //center
             if(!obj.myBoard.isRevealed(row,col))
             {
@@ -335,7 +330,6 @@ let obj = this;
             //left
             if(obj.myBoard.isInside(row-1,col) && !(obj.myBoard.isRevealed(row-1,col)) && !(obj.myBoard.isFlagged(row-1,col)))
             {
-              //window.alert("in");
               obj.myBoard.hide(row-1,col);
             }
             //right
@@ -376,13 +370,7 @@ let obj = this;
           }
 
 let p = setTimeout(function(){r(row, col, obj);},3000);
-//p();
-          //wait a 3 seconds then undo the reveal.
-          //var myvar = setTimeout(hideClick(row,col),1000);
-          //if(this.myBoard.isInside(row+1,col+1))
-          //{
-          //  this.myBoard.hide(row+1,col+1)
-        //  }
+
         }
 
         else {
