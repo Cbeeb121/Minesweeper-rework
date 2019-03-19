@@ -30,7 +30,13 @@ let r_photo_bank =
   5: "bf",
   6: "expand",
   7: "success",
-  8: "gru"
+  8: "gru",
+  9: "interesting",
+  10: "brian",
+  11: "pikachu",
+  12: "obi",
+  13: "matrix",
+  14: "think"
 };
 //function to check if reveal powerup is enabled.
 let revealEnabled = function()
@@ -239,7 +245,7 @@ var gameplay = {
     //if not, proceed as usual.
     leftClick: function(row,col)
     {
-      let r_num=Math.floor((Math.random() * 8) + 1);
+      let r_num=Math.floor((Math.random() * 14) + 1);
       image.src = r_photo_bank[r_num] + ".jpg";
 
         if (this.ended) {
