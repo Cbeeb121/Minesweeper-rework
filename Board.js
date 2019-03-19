@@ -1,6 +1,7 @@
 /**
  * @file Board class that holds and manuipulates board data and interacts with Tile.js and Gameplay.js.
  * @author Ryan Pope, Giang Nguyen, Hirsh Guha, Jordan Love, John Quitno
+ * @contributors Evan Gofourth, Clay Beabout, Alex Johnson, Sandy Rech
  *
  */
 class Board {
@@ -128,8 +129,6 @@ if(tempBool)
   if (this.tiles[x][y].getNumber!=0)
       $(id).innerHTML = this.tiles[x][y].getNumber;
 
-  //this.tiles[x][y].setRevealed(true);
-  //this.num_revealed++;
   return true;
 }
 else
@@ -211,12 +210,9 @@ else
             this.num_flagged--;
         }
         else {
-          //if (this.num_flagged<this.num_mines) {
               this.tiles[x][y].setFlag(true);
               this.num_flagged++;
               return true;
-          //}
-          //else alert("No more flags available")
         }
         return false;
     }
