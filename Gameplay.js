@@ -37,12 +37,13 @@ let r_photo_bank =
   13: "matrix",
   14: "think"
 };
-//function to check if reveal powerup is enabled.
+/**
+  * function to check if reveal powerup is enabled.
+  */
 let revealEnabled = function()
 {
   let PowerupString = document.getElementById("RevealQuantity_Attach").value;
   let PowerupNum = parseInt(PowerupString,10);
-//  window.alert(PowerupNum);
   if(document.getElementById("RevealCheckbox").checked && PowerupNum > 0)
   {
     return true;
@@ -53,7 +54,9 @@ let revealEnabled = function()
   }
 }
 
-//function checking if invincibility powerup is enabled
+/**
+  * function checking if invincibility powerup is enabled
+  */
 let invincibilityEnabled = function()
 {
   let invincibilityString = document.getElementById("InvincibilityQuantity_Attach").value;
@@ -115,7 +118,10 @@ var gameplay = {
         //onclick stuff
 
     },
-
+    /**
+        * Reveals all tiles on the board indefinitely regardless of bomb, adjacent or empty values
+        * Toggles on (true) / off (false) based on 'cheatmode' button click 
+        */
     cheat_mode: function () {
       if (cheatModeUsed){
         for (let i = 0; i < this.rows; i++) {
@@ -123,9 +129,7 @@ var gameplay = {
             if(this.myBoard.isInside(i,j) && !this.myBoard.isRevealed(i,j))
             {
               //if not a bomb
-
                 this.myBoard.reveal(i,j,true);
-
               //else
             }
           }
