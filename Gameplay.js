@@ -54,7 +54,9 @@ let revealEnabled = function()
   }
 }
 
-//function checking if invincibility powerup is enabled
+/**Checks if invincibility powerup is enabled
+  *@return {bool} -returns true if enabled, false if not
+*/
 let invincibilityEnabled = function()
 {
   let invincibilityString = document.getElementById("InvincibilityQuantity_Attach").value;
@@ -124,7 +126,7 @@ var gameplay = {
             if(this.myBoard.isInside(i,j) && !this.myBoard.isRevealed(i,j))
             {
               //if not a bomb
-              
+
                 this.myBoard.reveal(i,j,true);
 
               //else
