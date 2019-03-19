@@ -38,7 +38,9 @@ let r_photo_bank =
   13: "matrix",
   14: "think"
 };
-//function to check if reveal powerup is enabled.
+/**
+* a function to determine whether on left click, the click will run as a reveal powerup.
+*/
 let revealEnabled = function()
 {
   let PowerupString = document.getElementById("RevealQuantity_Attach").value;
@@ -124,7 +126,7 @@ var gameplay = {
             if(this.myBoard.isInside(i,j) && !this.myBoard.isRevealed(i,j))
             {
               //if not a bomb
-              
+
                 this.myBoard.reveal(i,j,true);
 
               //else

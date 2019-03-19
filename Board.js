@@ -92,9 +92,10 @@ class Board {
         * Reveals a tile if it hasn't been revealed yet and returns true or false depending on whether or not it has.
         * @param {number} - The x coordinate of a Tile.
         * @param {number} - The y coordinate of a Tile.
+        * @param {bool} - tempBool - indicates whether the reveal is temporary (as in for a powerup) or not.
         * @return {bool} - returns a bool indicating if the tile has been previously revealed .
         */
-    reveal(x, y, tempBool = false, bombBool = false) {
+    reveal(x, y, tempBool = false) {
 if(tempBool)
 {
   if (this.tiles[x][y].getRevealed || this.tiles[x][y].getFlag) return false;
@@ -162,9 +163,12 @@ else
 
     }
 
-
-    //for the sake of reveal powerup and cheatmode, it has become necessary to create a "hide"
-    //method. This method will return the tile clicked referenced back to its normal hidden state.
+    /**
+    * for the sake of reveal powerup and cheatmode, it has become necessary to create a "hide"
+    * method. This method will return the tile clicked referenced back to its normal hidden state.
+    * @param {number} row - the row number of the tile to hide.
+    * @param {number} col - the column number of the tile to hide.
+    */
     hide(row,col)
     {
 
@@ -174,7 +178,11 @@ else
           $(id).innerHTML = '&nbsp';
 
     }
-
+    /**
+    * a specialized hide method for hiding tiles that have flags on them.
+    * @param {number} row - the row number of the tile to hide.
+    * @param {number} col - the column number of the tile to hide.
+    */
     flagHide(row, col)
     {
       var id = 'cell-' + row + '-' + col;
